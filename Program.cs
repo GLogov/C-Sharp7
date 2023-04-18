@@ -11,7 +11,7 @@ m = 3, n = 4.
 double[,] array = Generate2DArray(3,4);
 PrintArray(array);
 
-void PrintArray(double[,] array)
+void PrintArray(double[,] array) // Распечатывает массив
 {
     for (var i = 0; i < array.GetLength(0); i++)
     {
@@ -25,7 +25,7 @@ void PrintArray(double[,] array)
     }
 }
 
-double[,] Generate2DArray(int m, int n)
+double[,] Generate2DArray(int m, int n) // Генерирует рандомный массив вещественных чисел M x N
 {
     double[,] array = new double[m, n];
 
