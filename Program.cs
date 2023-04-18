@@ -8,16 +8,21 @@ m = 3, n = 4.
 
 8 7,8 -7,1 9 */
 
-double[,] array = Generate2DArray(3,4);
+Console.Write($"Введите кол-во строк: ");
+int m = int.Parse(Console.ReadLine());
+Console.Write($"Введите кол-во столбцов: ");
+int n = int.Parse(Console.ReadLine());
+
+double[,] array = Generate2DArray(m, n);
 PrintArray(array);
 
-void PrintArray(double[,] array) // Распечатывает массив
+void PrintArray(double[,] array) // Распечатывает двумерный массив
 {
     for (var i = 0; i < array.GetLength(0); i++)
     {
         for (var j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($"<{array[i,j]}>");
+            Console.Write($"<{array[i, j]}>");
             Console.Write(" ");
         }
 
@@ -25,18 +30,17 @@ void PrintArray(double[,] array) // Распечатывает массив
     }
 }
 
-double[,] Generate2DArray(int m, int n) // Генерирует рандомный массив вещественных чисел M x N
+double[,] Generate2DArray(int m, int n) // Собирает двумерный массив по данным пользователя
 {
     double[,] array = new double[m, n];
-
-    Random random = new Random();
 
     for (int i = 0; i < m; i++)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = random.Next(-100, 100);
-            array[i, j] /= 10;
+            Console.Write($"Введите значение {j + 1}го элемента {i + 1}й строки: ");
+            double value = double.Parse(Console.ReadLine());
+            array[i, j] = value;
         }
     }
 
