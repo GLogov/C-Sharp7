@@ -1,23 +1,52 @@
-﻿/* Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+﻿/* Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
 
-m = 3, n = 4.
+Например, задан массив:
 
-0,5 7 -2 -0,2
+1 4 7 2
 
-1 -3,3 8 -9,9
+5 9 2 3
 
-8 7,8 -7,1 9 */
+8 4 2 4
 
-double[,] array = Generate2DArray(3,4);
+1, 7 -> такого числа в массиве нет */
+
+
+Console.Write("Введите индекс строки: ");
+int m = int.Parse(Console.ReadLine());
+Console.Write("Введите индекс столбца: ");
+int n = int.Parse(Console.ReadLine());
+int[,] array = Generate2DArray(3, 4);
 PrintArray(array);
+CheckPresenceElement(array, m, n);
 
-void PrintArray(double[,] array)
+
+void CheckPresenceElement(int[,] array, int m, int n)
+{
+    if (m > 0 && n > 0)
+    {
+        if (m < array.GetLength(0) && n < array.GetLength(1))
+        {
+            Console.WriteLine($"Значение = {array[m, n]}");
+        }
+        else
+        {
+            Console.WriteLine("Такого элемента нет");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Такого элемента нет");
+    }
+
+}
+
+void PrintArray(int[,] array)
 {
     for (var i = 0; i < array.GetLength(0); i++)
     {
         for (var j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($"<{array[i,j]}>");
+            Console.Write($"<{array[i, j]}>");
             Console.Write(" ");
         }
 
@@ -25,9 +54,9 @@ void PrintArray(double[,] array)
     }
 }
 
-double[,] Generate2DArray(int m, int n)
+int[,] Generate2DArray(int m, int n)
 {
-    double[,] array = new double[m, n];
+    int[,] array = new int[m, n];
 
     Random random = new Random();
 
@@ -35,8 +64,7 @@ double[,] Generate2DArray(int m, int n)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = random.Next(-100, 100);
-            array[i, j] /= 10;
+            array[i, j] = random.Next(1, 15);
         }
     }
 
