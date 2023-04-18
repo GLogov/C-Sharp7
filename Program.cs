@@ -1,33 +1,53 @@
-﻿/* Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+﻿/* Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 
-m = 3, n = 4.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3. */
 
-0,5 7 -2 -0,2
 
-1 -3,3 8 -9,9
+int[,] array = Generate2DArray(3, 4);
+Print2dArray(array);
+double[] avarage = FindAverageColumnTo2dArray(array);
+Console.Write($"Среднее арифметическое каждого столбца: ");
+PrintArray(avarage);
 
-8 7,8 -7,1 9 */
 
-double[,] array = Generate2DArray(3,4);
-PrintArray(array);
+double[] FindAverageColumnTo2dArray(int[,] array) // Выводит массив средних арифметических каждого столбца двумерного массива
+{
+    double[] avarageArray = new double[array.GetLength(1)];
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+        double sum = 0;
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            sum += array[i, j];
+        }
+        double avarage = sum / (array.GetLength(1) - 1);
+        avarageArray[j] = Math.Round(avarage, 2);
+    }
+    return avarageArray;
+}
 
-void PrintArray(double[,] array)
+void Print2dArray(int[,] array) // Печатает двумерный массив
 {
     for (var i = 0; i < array.GetLength(0); i++)
     {
+        Console.Write("|");
         for (var j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($"<{array[i,j]}>");
+            Console.Write($"<{array[i, j]}>");
             Console.Write(" ");
         }
-
+        Console.Write("|");
         Console.WriteLine();
     }
 }
 
-double[,] Generate2DArray(int m, int n)
+int[,] Generate2DArray(int m, int n) // Создает двумерный массив
 {
-    double[,] array = new double[m, n];
+    int[,] array = new int[m, n];
 
     Random random = new Random();
 
@@ -35,10 +55,14 @@ double[,] Generate2DArray(int m, int n)
     {
         for (int j = 0; j < n; j++)
         {
-            array[i, j] = random.Next(-100, 100);
-            array[i, j] /= 10;
+            array[i, j] = random.Next(10, 20);
         }
     }
 
     return array;
+}
+
+void PrintArray(double[] array) // Печатает указанный массив
+{
+    Console.WriteLine($"[{string.Join("; ", array)}]");
 }
