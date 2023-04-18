@@ -13,14 +13,16 @@
 
 Console.Write("Введите индекс строки: ");
 int m = int.Parse(Console.ReadLine());
+
 Console.Write("Введите индекс столбца: ");
 int n = int.Parse(Console.ReadLine());
+
 int[,] array = Generate2DArray(3, 4);
 PrintArray(array);
 CheckPresenceElement(array, m, n);
 
 
-void CheckPresenceElement(int[,] array, int m, int n)
+void CheckPresenceElement(int[,] array, int m, int n) // проверяет существует ли значение введенного элемента и выводит его если существует
 {
     if (m > 0 && n > 0)
     {
@@ -40,7 +42,7 @@ void CheckPresenceElement(int[,] array, int m, int n)
 
 }
 
-void PrintArray(int[,] array)
+void PrintArray(int[,] array) // Печатает двумерный массив
 {
     for (var i = 0; i < array.GetLength(0); i++)
     {
@@ -54,7 +56,7 @@ void PrintArray(int[,] array)
     }
 }
 
-int[,] Generate2DArray(int m, int n)
+int[,] Generate2DArray(int m, int n) // Генерирует рандомный двумерный массив 
 {
     int[,] array = new int[m, n];
 
